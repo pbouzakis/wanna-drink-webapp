@@ -24,4 +24,6 @@ class App extends React.Component {
     }
 }
 
-React.render(<App />, document.getElementById("app"));
+export function renderUI() {
+    React.render(<App />, document.getElementById("app"));
+}
