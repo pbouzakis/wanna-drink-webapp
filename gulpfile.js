@@ -93,11 +93,11 @@ gulp.task("images", function () {
 gulp.task("scripts", function () {
 	// our browserify instance
 	var bro = browserify({
-		entries: "./" + appPath + "/js/app.js",
+		entries: "./" + appPath + "/js/main.js",
 		debug: true,
 		transform: [babelify]
 	});
-	
+
 	// our javascript bundler
 	var bundler = (watch) ? watchify(bro) : bro;
 
@@ -134,8 +134,8 @@ gulp.task("scripts", function () {
 					chalk.gray("\n------------------------------------\n") +
 					chalk.yellow("Details:") +
 					chalk.green("\n  File: ") + error.filename +
-					chalk.green("\n  Line: ") + error.loc.line +
-					chalk.green("\n  Column: ") + error.loc.column +
+					chalk.green("\n  Line: ") + error.line +
+					chalk.green("\n  Column: ") + error.column +
 					chalk.gray("\n====================================\n")
 				);
 			})
@@ -146,7 +146,7 @@ gulp.task("scripts", function () {
 			.pipe(gulp.dest(destPath + "/js"))
 			.on("end", function () {
 				// don't do anything if we have an error
-				if (!bundler.error) { 
+				if (!bundler.error) {
 					// we are done bundling
 					util.log("Browserify finished bundling!");
 					// tell browserify we got an error
