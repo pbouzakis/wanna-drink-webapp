@@ -1,3 +1,27 @@
+import 'whatwg-fetch';
 import React from 'react';
 
-React.render(<h2>Hello, world!</h2>, document.getElementById("app"));
+class App extends React.Component {
+    render() {
+        return (
+            <main>
+                <h2>Hey there!</h2>
+                <button onClick={() => this._handleFetchClick()}>Fetch Styles</button>
+            </main>
+        );
+    }
+
+    _handleFetchClick() {
+        fetch('/beer-styles').then(this._log, this._logError);
+    }
+
+    _log(...args) {
+        console.log(...args);
+    }
+
+    _logError(...args) {
+        console.error(...args);
+    }
+}
+
+React.render(<App />, document.getElementById("app"));
