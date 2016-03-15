@@ -2,6 +2,9 @@
 
 The frontend single page application for Wanna Drink!
 
+## Prerequisites
+npm version > 2.14.x < 3
+
 ## Install
 `npm install`
 
