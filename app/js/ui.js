@@ -13,7 +13,7 @@ class App extends React.Component {
         return (
             <main>
                 <h2>Hey there!</h2>
-                <button onClick={() => this._handleFetchClick()}>Fetch Styles</button>
+                <button className="btn" onClick={() => this._handleFetchClick()}>Fetch Styles</button>
                 { this.state.styles }
                 <LoginForm />
             </main>
@@ -49,10 +49,10 @@ class LoginForm extends React.Component {
                     <input type="text" id="username" name="username" />
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" />
-                    <button onClick={this._handleLoginClick.bind(this)}>Submit</button>
+                    <button className="btn" onClick={this._handleLoginClick.bind(this)}>Submit</button>
                 </form>
                 <h4>Need to create account</h4>
-                <button onClick={() => this._handleCreateClick()}>Create Account</button>
+                <button className="btn" onClick={() => this._handleCreateClick()}>Create Account</button>
             </div>
         );
     }
