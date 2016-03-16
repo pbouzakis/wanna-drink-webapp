@@ -24,6 +24,7 @@
     "watchify": "^3.2.1"
   },
   "dependencies": {
+    "classnames": "^2.2.3",
     "core-decorators": "^0.11.0",
     "spak": "^0.22.0",
     "spak-di": "^0.1.0",
