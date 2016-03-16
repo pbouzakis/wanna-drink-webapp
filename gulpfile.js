@@ -178,6 +178,8 @@ gulp.task("serve", ["watch"], function () {
 	// initialize browser sync
 	browserSync.init({
 		server: destPath,
+		host: 'wanna-drink.localtest.me',
+		open: 'external',
 		middleware: [proxy]
 	});
 });
