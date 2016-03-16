@@ -1,24 +1,56 @@
 import 'whatwg-fetch';
 import React from 'react';
 import { autobind } from 'core-decorators';
+import classNames from 'classnames';
+import { App } from 'spak';
 
-class App extends React.Component {
+class AppVC extends React.Component {
     constructor() {
         super();
         this.state = {
-            styles: ''
+            styles: '',
+            hasLoginForm: false
         };
+        this._off = App.events.on("ui.requestLoginForm", this._showForm);
+    }
+
+    componentWillUnmount() {
+        this._off();
     }
 
     render() {
+        var loginForm = this.state.hasLoginForm ? this._loginForm : null;
+
         return (
-            <main>
-                <h2>Hey there!</h2>
-                <button className="btn" onClick={this._handleFetchClick}>Fetch Styles</button>
-                { this.state.styles }
-                <LoginForm />
+            <main className={classNames('appvc', this._classes)}>
+                <div className="appvc__loader progress">
+                    <div className="indeterminate"></div>
+                </div>
+                { loginForm }
             </main>
         );
+    }
+
+    get _loginForm() {
+        return (
+            <div>
+                <LoginForm />
+                <h4>Ping api</h4>
+                <button className="btn" onClick={this._handleFetchClick}>Fetch Styles</button>
+                { this.state.styles }
+            </div>
+        );
+    }
+
+    get _classes() {
+        return {
+            'appvc__is-loading': !this.state.hasLoginForm
+        };
+    }
+
+    @autobind
+    _showForm() {
+        this.setState({ hasLoginForm: true });
     }
 
     @autobind
@@ -71,5 +103,5 @@ class LoginForm extends React.Component {
 }
 
 export function renderUI() {
-    React.render(<App />, document.getElementById("app"));
+    React.render(<AppVC />, document.getElementById("app"));
 }

@@ -1,3 +1,13 @@
 ::selection {
     background: pink;
 }
+
+.appvc {
+    &__loader {
+        display: none;
+    }
+
+    &__is-loading &__loader {
+        display: block;
+    }
+}

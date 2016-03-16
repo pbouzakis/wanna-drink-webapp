@@ -30,7 +30,7 @@ App.run(
         },
 
         showLogin() {
-            console.log("Show Login Form!");
+            App.events.publish("ui.requestLoginForm");
         }
     })
 )
