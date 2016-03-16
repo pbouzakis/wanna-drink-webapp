@@ -95,7 +95,9 @@ gulp.task("scripts", function () {
 	var bro = browserify({
 		entries: "./" + appPath + "/js/main.js",
 		debug: true,
-		transform: [babelify]
+		transform: [babelify.configure({
+        	optional: ["es7.decorators"]
+    	})]
 	});
 
 	// our javascript bundler

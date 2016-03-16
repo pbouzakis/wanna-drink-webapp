@@ -4,15 +4,14 @@ import { component } from "spak/decorators";
 import { renderUI } from "./ui";
 import { LaunchApp } from "./actions";
 
+@component("main")
 class MainComponent {
-    static get metadata() { return { name: "main" }; }
     register() {
         return {
             $actions: [new LaunchApp()]
         }
     }
 }
-component("main")(MainComponent); // Manually call decorator! Damn you babel!
 
 App.run(
     new App.Components(new MainComponent()),
