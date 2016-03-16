@@ -12,6 +12,7 @@ var rename = require("gulp-rename");
 var sourcemaps = require("gulp-sourcemaps");
 var watchify = require("watchify");
 var uglify = require("gulp-uglify");
+var proxyMiddleware = require("http-proxy-middleware")
 var browserSync = require("browser-sync").create()
 
 // app path
@@ -171,6 +172,12 @@ gulp.task("scripts", function () {
 
 // called to serve the files on localhost
 gulp.task("serve", ["watch"], function () {
+	var proxy = proxyMiddleware('/api', {
+	    target: 'http://wanna-drink-api.localtest.me:5000'
+	});
 	// initialize browser sync
-	browserSync.init({ server: destPath });
+	browserSync.init({
+		server: destPath,
+		middleware: [proxy]
+	});
 });
