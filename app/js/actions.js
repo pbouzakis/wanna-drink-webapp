@@ -6,10 +6,13 @@ export class LaunchApp {
     exec({ presenter }) {
         presenter.showStartingUp();
 
-        if (App.session().isAuthenticated) {
-            presenter.showHome();
-        } else {
-            presenter.showLogin();
-        }
+        // Simulate longer start/load time.
+        setTimeout(() => {
+            if (App.session().isAuthenticated) {
+                presenter.showHome();
+            } else {
+                presenter.showLogin();
+            }
+        }, 1500);
     }
 }
