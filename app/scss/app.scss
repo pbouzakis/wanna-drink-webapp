@@ -2,6 +2,18 @@
     background: pink;
 }
 
+h2  {
+    font-size: 2.5rem;
+}
+
+h3 {
+    font-size: 2rem;
+}
+
+h4 {
+    font-size: 1.5rem;
+}
+
 .appvc {
     &__loader {
         display: none;
@@ -10,6 +22,19 @@
     &__is-loading &__loader {
         display: block;
     }
+}
+
+.shadowed-box {
+    border: 1px #eee solid;
+    padding: 1em;
+    box-shadow: 0 0 8px 0 #ccc;
+}
+
+.shadowed-box__header {
+    margin-top: 0;
+    background: #eee;
+    padding: .2rem .5rem;
+    color: #666;
 }
 
 .ping-api {

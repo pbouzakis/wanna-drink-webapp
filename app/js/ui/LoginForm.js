@@ -12,18 +12,20 @@ export default class LoginForm extends React.Component {
     }
     render() {
         return (
-            <div className="login-frm">
-                <form className={ classNames('login-frm__form', this._frmClasses) }>
-                    <h3>Login</h3>
-
-                    <label for="username">User Name</label>
-                    <input type="text" id="username" name="username" />
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" />
-                    <button className="btn" onClick={this._handleLoginClick}>Submit</button>
-
-                    <h4>Need to create account</h4>
-                    <button className="btn" onClick={this._handleCreateClick}>Create Account</button>
+            <div className="login-frm shadowed-box">
+                <form className={ classNames('row login-frm__form', this._frmClasses) }>
+                    <div className="col s12">
+                        <h2 className="shadowed-box__header">Login</h2>
+                        <label for="username">User Name</label>
+                        <input type="text" id="username" name="username" />
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" />
+                        <button className="btn" onClick={this._handleLoginClick}>Submit</button>
+                    </div>
+                    <div className="col s6 offset-s6">
+                        <h4>Need to create account?</h4>
+                        <button className="btn green darken-1" onClick={this._handleCreateClick}>Create Account</button>
+                    </div>
                 </form>
                 <CreateAccount
                     isVisible={ this.state.isCreateAccountVisible }
