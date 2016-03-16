@@ -1,5 +1,6 @@
 import 'whatwg-fetch';
 import React from 'react';
+import { autobind } from 'core-decorators';
 
 class App extends React.Component {
     constructor() {
@@ -13,17 +14,19 @@ class App extends React.Component {
         return (
             <main>
                 <h2>Hey there!</h2>
-                <button className="btn" onClick={() => this._handleFetchClick()}>Fetch Styles</button>
+                <button className="btn" onClick={this._handleFetchClick}>Fetch Styles</button>
                 { this.state.styles }
                 <LoginForm />
             </main>
         );
     }
 
+    @autobind
     _handleFetchClick() {
-        fetch('/api/styles').then(this._showStyles.bind(this), this._logError);
+        fetch('/api/styles').then(this._showStyles, this._logError);
     }
 
+    @autobind
     _showStyles(...args) {
         console.log(args);
         try {
@@ -49,10 +52,10 @@ class LoginForm extends React.Component {
                     <input type="text" id="username" name="username" />
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" />
-                    <button className="btn" onClick={this._handleLoginClick.bind(this)}>Submit</button>
+                    <button className="btn" onClick={this._handleLoginClick}>Submit</button>
                 </form>
                 <h4>Need to create account</h4>
-                <button className="btn" onClick={() => this._handleCreateClick()}>Create Account</button>
+                <button className="btn" onClick={this._handleCreateClick}>Create Account</button>
             </div>
         );
     }
