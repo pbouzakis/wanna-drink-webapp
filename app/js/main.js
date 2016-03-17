@@ -1,6 +1,7 @@
 import { App } from "spak";
 import { ProvidedAppDelegate } from "spak/providers";
 import { component } from "spak/decorators";
+import { ConsoleLogger } from "spak/providers";
 import { renderUI } from "./ui";
 import { LaunchApp } from "./actions";
 
@@ -17,6 +18,10 @@ App.run(
     new App.Components(new MainComponent()),
     new App.Config(),
     new ProvidedAppDelegate({
+        provideLogger() {
+            return new ConsoleLogger();
+        },
+
         onReady() {
             App.dispatchAction("launchApp", { presenter: this })
         },
