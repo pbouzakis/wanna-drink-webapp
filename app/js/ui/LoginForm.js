@@ -47,7 +47,7 @@ export default class LoginForm extends React.Component {
 
     @autobind @preventDefault
     _handleLoginClick() {
-        console.log("TODO: fetch('/api/login')");
+        throw new Error("Not implemented: fetch('/api/login')");
     }
 
     @autobind

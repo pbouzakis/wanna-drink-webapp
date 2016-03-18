@@ -9,7 +9,6 @@ export default class AppVC extends React.Component {
     constructor() {
         super();
         this.state = {
-            styles: '',
             hasLoginForm: false,
             modal: null
         };
@@ -45,7 +44,6 @@ export default class AppVC extends React.Component {
                 <div className="ping-api">
                     <h4>Ping api</h4>
                     <button className="btn" onClick={this._handleFetchClick}>Fetch Styles</button>
-                    <pre>{this.state.styles}</pre>
                 </div>
             </div>
         );
@@ -83,21 +81,23 @@ export default class AppVC extends React.Component {
 
     @autobind
     _handleFetchClick() {
-        fetch('/api/styles').then(this._showStyles, this._logError);
+        fetch('/api/styles').then(this._showStyles, this._handleFetchError);
     }
 
     @autobind
     _showStyles(...args) {
-        console.log(args);
         try {
             var styles = JSON.stringify(args[0]['body']);
-            this.setState({ styles });
+            App.events.publish('ui.requestModal', {
+                title: 'Styles of Beers',
+                message: styles
+            });
         } catch(e) {
-            this.setState({ hasError: true });
+            throw new Error("Could not parse styles of beer. Shame.");
         }
     }
 
-    _logError(...args) {
-        console.error(...args);
+    _handleFetchError(error) {
+        throw new Error("Could not fetch styles of beer: " + error.message);
     }
 }

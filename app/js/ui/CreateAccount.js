@@ -42,7 +42,7 @@ export default class CreateAccount extends React.Component {
 
     @autobind @preventDefault
     _handleClick() {
-        console.log('create account!');
+        throw new Error("Not implemented: CreateAccount.");
     }
 
     @autobind @preventDefault
