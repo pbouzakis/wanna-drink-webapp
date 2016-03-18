@@ -13,3 +13,7 @@ This is a work in progress. We are documenting the styleguide as we standardize 
         * Ex: `<button onClick={this._handleClick}>Click me</button>`
 - Prefer one class (which should be the `export default`) per module.
 
+## Sass
+
+- BEM style for classes - https://css-tricks.com/bem-101/
+

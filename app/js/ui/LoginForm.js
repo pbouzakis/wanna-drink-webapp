@@ -12,8 +12,8 @@ export default class LoginForm extends React.Component {
     }
     render() {
         return (
-            <div className="login-frm shadowed-box">
-                <form className={ classNames('row login-frm__form', this._frmClasses) }>
+            <div className="login shadowed-box">
+                <form className={ classNames('row login__form', this._frmClasses) }>
                     <div className="col s12">
                         <h2 className="shadowed-box__header">Login</h2>
                         <label for="username">User Name</label>
@@ -36,7 +36,7 @@ export default class LoginForm extends React.Component {
 
     get _frmClasses() {
         return {
-            'login-frm__form-is-hidden': this.state.isCreateAccountVisible
+            'login__form--hidden': this.state.isCreateAccountVisible
         };
     }
 
