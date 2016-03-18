@@ -6,6 +6,8 @@ For info on what technical decisions were made, [see this doc](./doc/tech-decisi
 
 For more about the app from a feature perspective, [see this doc](./doc/feature-set.md).
 
+For coding conventions/standards/styleguide [see this doc](./doc/coding-styleguide.md).
+
 ## Prerequisites
 npm version > 2.14.x < 3
 

@@ -1,7 +1,7 @@
-import { App } from "spak";
+import { App } from 'spak';
 
 export class LaunchApp {
-    get componentName() { return "launchApp" }
+    get componentName() { return 'launchApp' }
 
     exec({ presenter }) {
         presenter.showStartingUp();

@@ -93,11 +93,11 @@ export default class AppVC extends React.Component {
                 message: styles
             });
         } catch(e) {
-            throw new Error("Could not parse styles of beer. Shame.");
+            throw new Error('Could not parse styles of beer. Shame.');
         }
     }
 
     _handleFetchError(error) {
-        throw new Error("Could not fetch styles of beer: " + error.message);
+        throw new Error(`Could not fetch styles of beer: ${error.message}.`);
     }
 }

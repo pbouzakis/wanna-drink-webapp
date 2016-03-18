@@ -1,12 +1,12 @@
-import { App } from "spak";
-import { ProvidedAppDelegate } from "spak/providers";
-import { component } from "spak/decorators";
-import { ConsoleLogger } from "spak/providers";
-import { renderUI } from "./ui";
-import { LaunchApp } from "./actions";
-import UncaughtErrors from "./errors/UncaughtErrors";
+import { App } from 'spak';
+import { ProvidedAppDelegate } from 'spak/providers';
+import { component } from 'spak/decorators';
+import { ConsoleLogger } from 'spak/providers';
+import { renderUI } from './ui';
+import { LaunchApp } from './actions';
+import UncaughtErrors from './errors/UncaughtErrors';
 
-@component("main")
+@component('main')
 class MainComponent {
     register() {
         return {
@@ -32,7 +32,7 @@ App.run(
         },
 
         onReady() {
-            App.dispatchAction("launchApp", { presenter: this });
+            App.dispatchAction('launchApp', { presenter: this });
         },
 
         showStartingUp() {
@@ -40,11 +40,11 @@ App.run(
         },
 
         showHome() {
-            console.log("Show Logged In Homepage!");
+            console.log('Show Logged In Homepage!');
         },
 
         showLogin() {
-            App.events.publish("ui.requestLoginForm");
+            App.events.publish('ui.requestLoginForm');
         }
     })
 )

@@ -28,8 +28,8 @@ export default class LoginForm extends React.Component {
                     </div>
                 </form>
                 <CreateAccount
-                    isVisible={ this.state.isCreateAccountVisible }
-                    onBack={ this._handleBackFromCreateAccount }/>
+                    isVisible={this.state.isCreateAccountVisible}
+                    onBack={this._handleBackFromCreateAccount}/>
             </div>
         );
     }
@@ -47,7 +47,7 @@ export default class LoginForm extends React.Component {
 
     @autobind @preventDefault
     _handleLoginClick() {
-        throw new Error("Not implemented: fetch('/api/login')");
+        throw new Error('Not implemented: fetch(/api/login)');
     }
 
     @autobind

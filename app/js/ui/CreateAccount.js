@@ -13,7 +13,7 @@ export default class CreateAccount extends React.Component {
 
     render() {
         return (
-            <div className={ classNames('cacct', { 'cacct__is-showing': this.props.isVisible }) }>
+            <div className={classNames('cacct', { 'cacct__is-showing': this.props.isVisible })}>
                 <form className="row">
                     <div className="col col12">
                         <h2 className="shadowed-box__header">Create Account</h2>

@@ -1,22 +1,22 @@
-import "tracekit"; // Create global TraceKit ref.
-import { autobind } from "core-decorators";
-import { App } from "spak";
-import { logger } from "spak/decorators";
+import 'tracekit'; // Create global TraceKit ref.
+import { autobind } from 'core-decorators';
+import { App } from 'spak';
+import { logger } from 'spak/decorators';
 
-@logger("uncaught-errors")
+@logger('uncaught-errors')
 export default class UncaughtErrors {
     listen() {
         TraceKit.collectWindowErrors = true;
         TraceKit.remoteFetching = false;
-        // Tell trackeit to let us know about window.onerror
+        // Tell tracekit to let us know about window.onerror
         TraceKit.report.subscribe(this._handleReport);
     }
 
     handleActionError(error) {
-        this.handleSystemError(error, "Action");
+        this.handleSystemError(error, 'Action');
     }
 
-    handleSystemError(error, type = "System") {
+    handleSystemError(error, type = 'System') {
         this._logAndReportError(error, type);
     }
 
