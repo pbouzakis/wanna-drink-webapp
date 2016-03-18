@@ -28,6 +28,9 @@ export default class UncaughtErrors {
     @autobind
     _handleReport(error) {
         this.logger.error(error);
-        alert(`Oops! ${error.message}.`);
+        App.events.publish('ui.requestModal', {
+            title: 'Oops! Something Went Wrong :(',
+            message: error.message
+        });
     }
 }
