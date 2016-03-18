@@ -4,13 +4,18 @@ import { component } from "spak/decorators";
 import { ConsoleLogger } from "spak/providers";
 import { renderUI } from "./ui";
 import { LaunchApp } from "./actions";
+import UncaughtErrors from "./errors/UncaughtErrors";
 
 @component("main")
 class MainComponent {
     register() {
         return {
-            $actions: [new LaunchApp()]
-        }
+            logger: new ConsoleLogger(),
+            uncaughtErrors: new UncaughtErrors(),
+            $actions: [
+                new LaunchApp()
+            ]
+        };
     }
 }
 
@@ -18,12 +23,16 @@ App.run(
     new App.Components(new MainComponent()),
     new App.Config(),
     new ProvidedAppDelegate({
-        provideLogger() {
-            return new ConsoleLogger();
+        provideLogger({ logger }) {
+            return logger;
+        },
+
+        provideUncaughtErrors({ uncaughtErrors }) {
+            return uncaughtErrors;
         },
 
         onReady() {
-            App.dispatchAction("launchApp", { presenter: this })
+            App.dispatchAction("launchApp", { presenter: this });
         },
 
         showStartingUp() {
