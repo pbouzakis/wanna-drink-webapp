@@ -1,32 +1,39 @@
 import React from 'react';
 import classNames from 'classnames';
 import { App } from 'spak';
-import { autobind } from "./decorators";
+import { autobind } from './decorators';
 import LoginForm from './LoginForm';
+import SimpleModal from './SimpleModal';
 
 export default class AppVC extends React.Component {
     constructor() {
         super();
         this.state = {
             styles: '',
-            hasLoginForm: false
+            hasLoginForm: false,
+            modal: null
         };
-        this._off = App.events.on('ui.requestLoginForm', this._showForm);
+        this._offs = [
+            App.events.on('ui.requestLoginForm', this._showForm),
+            App.events.on('ui.requestModal', this._showModal)
+        ];
     }
 
     componentWillUnmount() {
-        this._off();
+        this._offs.forEach(off => off());
     }
 
     render() {
         var loginForm = this.state.hasLoginForm ? this._loginForm : null;
+        var modal = this.state.modal ? this._renderModal(this.state.modal) : null;
 
         return (
-            <main className={ classNames('appvc', this._classes) }>
+            <main className={classNames('appvc', this._classes)}>
                 <div className="appvc__loader progress">
                     <div className="indeterminate"></div>
                 </div>
-                { loginForm }
+                {loginForm}
+                {modal}
             </main>
         );
     }
@@ -38,10 +45,24 @@ export default class AppVC extends React.Component {
                 <div className="ping-api">
                     <h4>Ping api</h4>
                     <button className="btn" onClick={this._handleFetchClick}>Fetch Styles</button>
-                    <pre>{ this.state.styles }</pre>
+                    <pre>{this.state.styles}</pre>
                 </div>
             </div>
         );
+    }
+
+    _renderModal({ title, message }) {
+        return (
+            <SimpleModal
+                message={message}
+                title={title}
+                onComplete={this._closeModal} />
+        );
+    }
+
+    @autobind
+    _closeModal() {
+        this.setState({ modal: null });
     }
 
     get _classes() {
@@ -53,6 +74,11 @@ export default class AppVC extends React.Component {
     @autobind
     _showForm() {
         this.setState({ hasLoginForm: true });
+    }
+
+    @autobind
+    _showModal(modal) {
+        this.setState({ modal });
     }
 
     @autobind
