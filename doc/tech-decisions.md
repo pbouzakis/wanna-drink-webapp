@@ -23,3 +23,6 @@ This will give the app some structure and standard. We use `spak` to dispatch an
 
 ## fetch
 Ajax calls will use the new standard `fetch` api. Since this is might not be available in browsers, we're using githubs polyfil `whatwg-fetch`.
+
+## TraceKit
+Since handling `window.onerror` can be a nightmare due to cross browser compatability, we've chose [TraceKit](https://github.com/csnover/TraceKit) to create a consistent error we can rely on for our uncaught error handling.
