@@ -16,10 +16,10 @@ export default class LoginForm extends React.Component {
                 <form className={ classNames('row login__form', this._frmClasses) }>
                     <div className="col s12">
                         <h2 className="shadowed-box__header">Login</h2>
-                        <label for="username">User Name</label>
-                        <input type="text" id="username" name="username" />
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" />
+                        <label htmlFor="username">User Name</label>
+                        <input ref="username" type="text" id="username" name="username" />
+                        <label htmlFor="password">Password</label>
+                        <input ref="password" type="password" id="password" name="password" />
                         <button className="btn" onClick={this._handleLoginClick}>Submit</button>
                     </div>
                     <div className="col s6 offset-s6">

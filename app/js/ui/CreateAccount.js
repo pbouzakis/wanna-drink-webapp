@@ -17,15 +17,15 @@ export default class CreateAccount extends React.Component {
                 <form className="row">
                     <div className="col s12">
                         <h2 className="shadowed-box__header">Create Account</h2>
-                        <label for="username">User Name</label>
+                        <label htmlFor="username">User Name</label>
                         <input type="text" id="username" name="username" />
-                        <label for="password">Password</label>
+                        <label htmlFor="password">Password</label>
                         <input type="password" id="password" name="password" />
-                        <label for="fav-beers">Favorite Beers</label>
+                        <label htmlFor="fav-beers">Favorite Beers</label>
                         <input type="text" id="fav-beers" name="fav-beers" />
-                        <label for="fav-styles">Favorite Styles</label>
+                        <label htmlFor="fav-styles">Favorite Styles</label>
                         <select id="fav-styles" name="fav-styles">
-                            <option value="" disabled selected>Choose your option</option>
+                            <option value="" disabled>Choose your option</option>
                             <option>IPA</option>
                             <option>other</option>
                         </select>
