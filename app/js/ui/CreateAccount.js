@@ -15,7 +15,7 @@ export default class CreateAccount extends React.Component {
         return (
             <div className={classNames('cacct', { 'cacct--showing': this.props.isVisible })}>
                 <form className="row">
-                    <div className="col col12">
+                    <div className="col s12">
                         <h2 className="shadowed-box__header">Create Account</h2>
                         <label for="username">User Name</label>
                         <input type="text" id="username" name="username" />
