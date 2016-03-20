@@ -3,7 +3,7 @@ import { ProvidedAppDelegate } from 'spak/providers';
 import { component } from 'spak/decorators';
 import { ConsoleLogger } from 'spak/providers';
 import { renderUI } from './ui';
-import { LaunchApp } from './actions';
+import { LaunchApp, Login } from './actions';
 import UncaughtErrors from './errors/UncaughtErrors';
 
 @component('main')
@@ -13,7 +13,8 @@ class MainComponent {
             logger: new ConsoleLogger(),
             uncaughtErrors: new UncaughtErrors(),
             $actions: [
-                new LaunchApp()
+                new LaunchApp(),
+                new Login()
             ]
         };
     }

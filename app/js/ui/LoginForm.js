@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import { App } from 'spak';
 import { autobind, preventDefault } from './decorators';
 import CreateAccount from './CreateAccount';
 
@@ -47,7 +48,12 @@ export default class LoginForm extends React.Component {
 
     @autobind @preventDefault
     _handleLoginClick() {
-        throw new Error('Not implemented: fetch(/api/login)');
+        App.dispatchAction('login', {
+            credentials: {
+                username: this.refs.username.getDOMNode().value,
+                password: this.refs.password.getDOMNode().value
+            }
+        });
     }
 
     @autobind

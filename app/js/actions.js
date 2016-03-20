@@ -27,3 +27,11 @@ export class LaunchApp extends Action {
         }, 1500);
     }
 }
+
+@action('login')
+export class Login extends Action {
+    exec({ credentials }) {
+        this.logger.log('Attempt to login w/ credentials', credentials);
+        throw new Error(`NotImplemented: Login "${credentials.username}."`);
+    }
+}
