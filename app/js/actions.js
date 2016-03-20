@@ -1,8 +1,19 @@
-import { App } from 'spak';
+import { App, Action } from 'spak';
 
-export class LaunchApp {
-    get componentName() { return 'launchApp' }
+// Class decorator for setting componentName getter.
+// When registered this will be the default name of the action for dispatch.
+function action(defaultName) {
+    return (target) => {
+        target.prototype.ns = defaultName; // Action base class wants a namespace.
+        Object.defineProperty(target.prototype, 'componentName', {
+            get: () => defaultName,
+            enumerable: true
+        });
+    };
+}
 
+@action('launchApp')
+export class LaunchApp extends Action {
     exec({ presenter }) {
         presenter.showStartingUp();
 
