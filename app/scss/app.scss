@@ -57,4 +57,10 @@ img.logo {
 
 .cacct--showing {
     display: block;
+    & i {
+        cursor: pointer;
+        &:hover {
+            color: #43A047;
+        }
+    }
 }
