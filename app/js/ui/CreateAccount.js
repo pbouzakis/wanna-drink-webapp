@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import { App } from 'spak';
 import { autobind, preventDefault } from './decorators';
 
 export default class CreateAccount extends React.Component {
@@ -42,7 +43,8 @@ export default class CreateAccount extends React.Component {
 
     @autobind @preventDefault
     _handleClick() {
-        throw new Error("Not implemented: CreateAccount.");
+        // TODO supply account info.
+        App.dispatchAction('createAccount');
     }
 
     @autobind @preventDefault

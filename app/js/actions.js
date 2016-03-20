@@ -35,3 +35,12 @@ export class Login extends Action {
         throw new Error(`NotImplemented: Login "${credentials.username}."`);
     }
 }
+
+
+@action('createAccount')
+export class CreateAccount extends Action {
+    exec() {
+        this.logger.log('Attempt to create account.');
+        throw new Error('NotImplemented: CreateAccount.');
+    }
+}
