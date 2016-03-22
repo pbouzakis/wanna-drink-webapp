@@ -85,16 +85,27 @@ export default class AppVC extends React.Component {
     }
 
     @autobind
-    _showStyles(...args) {
-        try {
-            var styles = JSON.stringify(args[0]['body']);
-            App.events.publish('ui.requestModal', {
-                title: 'Styles of Beers',
-                message: styles
-            });
-        } catch(e) {
-            throw new Error('Could not parse styles of beer. Shame.');
-        }
+    _showStyles(response) {
+        response.json().then(function(json) {
+            // Try catch in place mainly for errors in the data manipulation
+            try {
+                var stylesData = json.data,
+                    styles = [];
+
+                styles = stylesData.map((beer) => {
+                    return beer.shortName ? beer.shortName : beer.name;
+                });
+                styles.sort();
+
+                // TODO - Display these beers differently
+                App.events.publish('ui.requestModal', {
+                    title: 'Styles of Beers',
+                    message: styles.join(', ')
+                });
+            } catch(e) {
+                throw new Error('Could not parse styles of beer. Shame.');
+            }
+        });
     }
 
     _handleFetchError(error) {
