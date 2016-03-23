@@ -41,10 +41,6 @@ export default class AppVC extends React.Component {
         return (
             <div>
                 <LoginForm />
-                <div className="ping-api">
-                    <h4>Ping api</h4>
-                    <button className="btn" onClick={this._handleFetchClick}>Fetch Styles</button>
-                </div>
             </div>
         );
     }
@@ -77,27 +73,5 @@ export default class AppVC extends React.Component {
     @autobind
     _showModal(modal) {
         this.setState({ modal });
-    }
-
-    @autobind
-    _handleFetchClick() {
-        fetch('/api/styles').then(this._showStyles, this._handleFetchError);
-    }
-
-    @autobind
-    _showStyles(...args) {
-        try {
-            var styles = JSON.stringify(args[0]['body']);
-            App.events.publish('ui.requestModal', {
-                title: 'Styles of Beers',
-                message: styles
-            });
-        } catch(e) {
-            throw new Error('Could not parse styles of beer. Shame.');
-        }
-    }
-
-    _handleFetchError(error) {
-        throw new Error(`Could not fetch styles of beer: ${error.message}.`);
     }
 }

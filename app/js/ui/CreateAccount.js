@@ -2,16 +2,9 @@ import React from 'react';
 import classNames from 'classnames';
 import { App } from 'spak';
 import { autobind, preventDefault } from './decorators';
+import BeerStylesSelect from './BeerStylesSelect';
 
 export default class CreateAccount extends React.Component {
-    componentDidMount() {
-        $('#fav-styles').material_select();
-    }
-
-    componentWillUnmount() {
-        $('#fav-styles').material_select('destroy');
-    }
-
     render() {
         return (
             <div className={classNames('cacct', { 'cacct--showing': this.props.isVisible })}>
@@ -24,12 +17,8 @@ export default class CreateAccount extends React.Component {
                         <input type="password" id="password" name="password" />
                         <label htmlFor="fav-beers">Favorite Beers</label>
                         <input type="text" id="fav-beers" name="fav-beers" />
-                        <label htmlFor="fav-styles">Favorite Styles</label>
-                        <select id="fav-styles" name="fav-styles">
-                            <option value="" disabled>Choose your option</option>
-                            <option>IPA</option>
-                            <option>other</option>
-                        </select>
+                        <label htmlFor="fav-style">Favorite Style</label>
+                        <BeerStylesSelect />
                         <button className="btn" onClick={this._handleClick}>Create</button>
                     </div>
                     <div className="col s6 offset-s6">
