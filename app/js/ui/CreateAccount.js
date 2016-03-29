@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { App } from 'spak';
 import { autobind, preventDefault } from './decorators';
+import BeerStylesSelect from './BeerStylesSelect';
 
 export default class CreateAccount extends React.Component {
     constructor() {
@@ -11,14 +12,6 @@ export default class CreateAccount extends React.Component {
             latitude: '',
             longitude: '',
         };
-    }
-
-    componentDidMount() {
-        $('#fav-styles').material_select();
-    }
-
-    componentWillUnmount() {
-        $('#fav-styles').material_select('destroy');
     }
 
     render() {
@@ -33,17 +26,16 @@ export default class CreateAccount extends React.Component {
                         <input type="password" id="password" name="password" />
                         <label htmlFor="fav-beers">Favorite Beers</label>
                         <input type="text" id="fav-beers" name="fav-beers" />
+
                         <i className="material-icons small" onClick={this._handleZipCodeClick}>location_on</i>
                         <label htmlFor="zipcode">Zip Code</label>
                         <input type="text" id="zipcode" name="zipcode" value={this.state.zipcode} />
                         <input type="text" id="latitude" className="hide" name="latitude" value={this.state.latitude} />
                         <input type="text" id="longitude" className="hide" name="longitude" value={this.state.longitude} />
-                        <label htmlFor="fav-styles">Favorite Styles</label>
-                        <select id="fav-styles" name="fav-styles">
-                            <option value="" disabled>Choose your option</option>
-                            <option>IPA</option>
-                            <option>other</option>
-                        </select>
+
+                        <label htmlFor="fav-style">Favorite Style</label>
+                        <BeerStylesSelect />
+
                         <button className="btn" onClick={this._handleClick}>Create</button>
                     </div>
                     <div className="col s6 offset-s6">
