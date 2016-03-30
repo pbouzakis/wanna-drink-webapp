@@ -1,4 +1,5 @@
 import { App, Action } from 'spak';
+import { propInject } from 'spak/decorators';
 
 // Class decorator for setting componentName getter.
 // When registered this will be the default name of the action for dispatch.
@@ -29,18 +30,20 @@ export class LaunchApp extends Action {
 }
 
 @action('login')
+@propInject('userGateway')
 export class Login extends Action {
     exec({ credentials }) {
         this.logger.log('Attempt to login w/ credentials', credentials);
-        throw new Error(`NotImplemented: Login "${credentials.username}."`);
+        return this.userGateway.login(credentials);
     }
 }
 
 
 @action('createAccount')
+@propInject('userGateway')
 export class CreateAccount extends Action {
     exec() {
         this.logger.log('Attempt to create account.');
-        throw new Error('NotImplemented: CreateAccount.');
+        return this.userGateway.createAccount();
     }
 }

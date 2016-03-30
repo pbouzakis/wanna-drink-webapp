@@ -3,6 +3,7 @@ import { ProvidedAppDelegate } from 'spak/providers';
 import { component } from 'spak/decorators';
 import { ConsoleLogger } from 'spak/providers';
 import { renderUI } from './ui';
+import UserGateway from './gateways/UserGateway';
 import { LaunchApp, Login, CreateAccount } from './actions';
 import UncaughtErrors from './errors/UncaughtErrors';
 
@@ -12,6 +13,7 @@ class MainComponent {
         return {
             logger: new ConsoleLogger(),
             uncaughtErrors: new UncaughtErrors(),
+            userGateway: new UserGateway(),
             $actions: [
                 new LaunchApp(),
                 new Login(),
