@@ -3,17 +3,22 @@ import classNames from 'classnames';
 import { App } from 'spak';
 import { autobind, preventDefault } from './decorators';
 import CreateAccount from './CreateAccount';
+import FormErrorMsg from './FormErrorMsg';
 
+@FormErrorMsg.mixin
 export default class LoginForm extends React.Component {
     constructor() {
         super();
         this.state = {
-            isCreateAccountVisible: false
+            isCreateAccountVisible: false,
+            errors: null
         };
     }
     render() {
         return (
             <div className="login shadowed-box">
+                {this.renderErrorMessage()}
+
                 <form className={ classNames('row login__form', this._frmClasses) }>
                     <div className="col s12">
                         <h2 className="shadowed-box__header">Login</h2>
@@ -52,7 +57,8 @@ export default class LoginForm extends React.Component {
             credentials: {
                 username: this.refs.username.getDOMNode().value,
                 password: this.refs.password.getDOMNode().value
-            }
+            },
+            presenter: this
         });
     }
 

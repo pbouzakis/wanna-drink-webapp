@@ -3,7 +3,9 @@ import classNames from 'classnames';
 import { App } from 'spak';
 import { autobind, preventDefault } from './decorators';
 import BeerStylesSelect from './BeerStylesSelect';
+import FormErrorMsg from './FormErrorMsg';
 
+@FormErrorMsg.mixin
 export default class CreateAccount extends React.Component {
     constructor() {
         super();
@@ -17,6 +19,8 @@ export default class CreateAccount extends React.Component {
     render() {
         return (
             <div className={classNames('cacct', { 'cacct--showing': this.props.isVisible })}>
+                {this.renderErrorMessage()}
+
                 <form className="row">
                     <div className="col s12">
                         <h2 className="shadowed-box__header">Create Account</h2>
