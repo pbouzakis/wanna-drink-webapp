@@ -32,9 +32,28 @@ export class LaunchApp extends Action {
 @action('login')
 @propInject('userGateway')
 export class Login extends Action {
-    exec({ credentials }) {
+    exec({ credentials, presenter }) {
         this.logger.log('Attempt to login w/ credentials', credentials);
+
+        const errors = this._validate(credentials);
+        if (errors.length > 0) {
+            presenter.showErrorMessage(errors);
+            return; // RETURN EARLY! Can't login w/o valid creds.
+        }
+
         return this.userGateway.login(credentials);
+    }
+
+    _validate({ username, password }) {
+        let errors = [];
+
+        if (username === "" || password === "") {
+            errors.push("Missing username/password.");
+        } else if (!/^([a-zA-z0-9])*$/.test(username)) {
+            errors.push("Username must be alphanumeric.");
+        }
+
+        return errors;
     }
 }
 
