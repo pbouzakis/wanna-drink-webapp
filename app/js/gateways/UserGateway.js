@@ -9,7 +9,14 @@ export default class UserGateway extends ApiGateway {
         throw new Error('NotImplemented: UserGateway#logout.');
     }
 
-    createAccount() {
-        throw new Error('NotImplemented: UserGateway#createAccount.');
+    createAccount(form) {
+        let formData = new FormData();
+        for (let prop in form) {
+            formData.append(prop, form[prop]);
+        }
+        this.fetch('/account', {
+            method: 'POST',
+            body: formData
+        });
     }
 }

@@ -61,7 +61,7 @@ export default class BeerStylesSelect extends React.Component {
 
     render() {
         return (
-            <select id="fav-style" name="fav-style">{this.state.options}</select>
+            <select ref="favStyle" id="fav-style" name="fav-style">{this.state.options}</select>
         )
     }
 }

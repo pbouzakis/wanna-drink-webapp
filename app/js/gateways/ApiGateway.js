@@ -4,15 +4,15 @@ import { App } from 'spak';
 // TODO Check errors for 401 not authenticated.
 
 export default class ApiGateway {
-    fetch(endpoint) {
+    fetch(endpoint, options) {
         return this._publishBeforeFetch(endpoint)
-            .then(() => this._sendFetch(endpoint))
+            .then(() => this._sendFetch(endpoint, options))
             .then(this._handleFetchResponse)
             .finally(() => this._publishFetched(endpoint));
     }
 
-    _sendFetch(endpoint) {
-        return global.fetch(`/api${endpoint}`);
+    _sendFetch(endpoint, options) {
+        return global.fetch(`/api${endpoint}`, options);
     }
 
     @autobind

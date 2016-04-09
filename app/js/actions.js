@@ -61,8 +61,7 @@ export class Login extends Action {
 @action('createAccount')
 @propInject('userGateway')
 export class CreateAccount extends Action {
-    exec() {
-        this.logger.log('Attempt to create account.');
-        return this.userGateway.createAccount();
+    exec({ form }) {
+        return this.userGateway.createAccount(form);
     }
 }

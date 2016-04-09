@@ -25,20 +25,20 @@ export default class CreateAccount extends React.Component {
                     <div className="col s12">
                         <h2 className="shadowed-box__header">Create Account</h2>
                         <label htmlFor="username">User Name</label>
-                        <input type="text" id="username" name="username" />
+                        <input type="text" ref="username" id="username" name="username" />
                         <label htmlFor="password">Password</label>
-                        <input type="password" id="password" name="password" />
+                        <input type="password" ref="password" id="password" name="password" />
                         <label htmlFor="fav-beers">Favorite Beers</label>
-                        <input type="text" id="fav-beers" name="fav-beers" />
+                        <input type="text" ref="favBeers" id="fav-beers" name="fav-beers" />
 
                         <i className="material-icons small" onClick={this._handleZipCodeClick}>location_on</i>
                         <label htmlFor="zipcode">Zip Code</label>
-                        <input type="text" id="zipcode" name="zipcode" value={this.state.zipcode} />
-                        <input type="text" id="latitude" className="hide" name="latitude" value={this.state.latitude} />
-                        <input type="text" id="longitude" className="hide" name="longitude" value={this.state.longitude} />
+                        <input type="text" ref="zipcode" id="zipcode" name="zipcode" value={this.state.zipcode} />
+                        <input type="text" ref="latitude" id="latitude" className="hide" name="latitude" value={this.state.latitude} />
+                        <input type="text" ref="longitude" id="longitude" className="hide" name="longitude" value={this.state.longitude} />
 
                         <label htmlFor="fav-style">Favorite Style</label>
-                        <BeerStylesSelect />
+                        <BeerStylesSelect ref="beerStylesSelect" />
 
                         <button className="btn" onClick={this._handleClick}>Create</button>
                     </div>
@@ -53,8 +53,17 @@ export default class CreateAccount extends React.Component {
 
     @autobind @preventDefault
     _handleClick() {
-        // TODO supply account info.
-        App.dispatchAction('createAccount');
+        App.dispatchAction('createAccount', {
+            form: {
+                username: this.refs.username.getDOMNode().value,
+                password: this.refs.password.getDOMNode().value,
+                favBeers: this.refs.favBeers.getDOMNode().value,
+                zipcode: this.refs.zipcode.getDOMNode().value,
+                latitude: this.refs.latitude.getDOMNode().value,
+                longitude: this.refs.longitude.getDOMNode().value,
+                favStyle: this.refs.beerStylesSelect.refs.favStyle.getDOMNode().value,
+            }
+        });
     }
 
     @autobind @preventDefault
