@@ -61,7 +61,7 @@ export default class CreateAccount extends React.Component {
                 zipcode: this.refs.zipcode.getDOMNode().value,
                 latitude: this.refs.latitude.getDOMNode().value,
                 longitude: this.refs.longitude.getDOMNode().value,
-                favStyle: this.refs.beerStylesSelect.refs.favStyle.getDOMNode().value,
+                favStyle: this.refs.beerStylesSelect.get(),
             }
         });
     }

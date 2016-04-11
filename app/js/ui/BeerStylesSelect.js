@@ -9,6 +9,10 @@ export default class BeerStylesSelect extends React.Component {
         };
     }
 
+    get() {
+        return this.refs.favStyle.getDOMNode().value
+    }
+
     componentDidMount() {
         this._fetchBeerStyles()
         $('#fav-style').material_select();
